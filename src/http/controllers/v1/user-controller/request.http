@@ -1,0 +1,9 @@
+### Create a User
+POST {{url}}:{{port}}/{{api-version}}/users
+
+{
+    "name": "",
+    "email": "",
+    "password": "",
+    "user_id": ""
+}

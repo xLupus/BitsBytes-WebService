@@ -1,0 +1,28 @@
+@role_id=86b79d7b-0b29-4dcb-8d37-95a007c5bf87
+
+### Create a Role
+POST {{url}}:{{port}}/{{api-version}}/roles
+
+{
+    "name":"Redator",
+    "description":"Usuario com a responsabilidade de criar as postagens do sistema"
+}
+
+### Get All Roles
+GET {{url}}:{{port}}/{{api-version}}/roles
+    #?filter=name:tor
+    #?order=-name
+    #?skip=0&take=1
+
+### Get a Role Details
+GET {{url}}:{{port}}/{{api-version}}/roles/{{role_id}}
+
+### Update a Role
+PUT {{url}}:{{port}}/{{api-version}}/roles/{{role_id}}
+
+{
+    "name": "Editor"
+}
+
+### Delete a Role
+DELETE  {{url}}:{{port}}/{{api-version}}/roles/{{role_id}}

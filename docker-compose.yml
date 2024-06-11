@@ -1,0 +1,27 @@
+# The containers that compose the project
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: app_database
+    ports:
+      - 5432:5432
+    env_file:
+      - ./.env
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+
+  postgres_tests:
+    image: postgres:latest
+    restart: always
+    container_name: tests_prisma_database
+    ports:
+      - 5433:5432
+    env_file:
+      - ./.env.test
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: tests

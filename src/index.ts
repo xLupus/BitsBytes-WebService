@@ -1,5 +1,5 @@
 import { env } from "./env";
-import { app } from "./http/server";
+import { app } from "./config/server";
 
 const { APP_PORT } = env
 

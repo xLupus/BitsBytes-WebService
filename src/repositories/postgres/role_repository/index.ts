@@ -1,46 +1,46 @@
-import { Prisma, PrismaClient } from "@prisma/client"
-import { RoleGetAllOptions, RoleOutput, RoleRepository } from "../../../types/role"
-import { RoleInput, RoleUpdateInput } from "../../../types/role"
+import { Prisma } from "@prisma/client";
+import { RoleGetAllOptions, RoleOutput, RoleRepository } from "../../../types/role";
+import { RoleInput, RoleUpdateInput } from "../../../types/role";
+import prisma from "../../../database/client";
+import { UserOutput } from "../../../types/user";
 
 export class RoleRepositoryPostgres implements RoleRepository {
-    prisma = new PrismaClient()
-
     getAll = async (options?: RoleGetAllOptions) => {
-        const prismaOptions: Prisma.RoleFindManyArgs = {}
+        const prismaOptions: Prisma.RoleFindManyArgs = {};
 
         if (options?.filter) {
             if (options.filter.column == "name")
-                prismaOptions.where = { name: { contains: options.filter.value } }
+                prismaOptions.where = { name: { contains: options.filter.value } };
         }
 
         if (options?.order) {
             if (options.order.column == "name")
-                prismaOptions.orderBy = { name: options.order.order_operator }
+                prismaOptions.orderBy = { name: options.order.order_operator };
         }
 
         if (options?.paginate) {
             if (options.paginate.skip)
-                prismaOptions.skip = options.paginate.skip
+                prismaOptions.skip = options.paginate.skip;
 
             if (options.paginate.take)
-                prismaOptions.take = options.paginate.take
+                prismaOptions.take = options.paginate.take;
         }
 
-        const roles = await this.prisma.role.findMany(prismaOptions)
+        const roles = await prisma.role.findMany(prismaOptions);
 
         // const roles_output = roles.map(role => {})
 
-        return roles
-    }
+        return roles as RoleOutput[];
+    };
 
     getById = async (role_id: string) => {
-        const role = await this.prisma.role.findUnique({
+        const role = await prisma.role.findUnique({
             where: { id: role_id },
             include: { _count: true }
-        })
+        });
 
         if (!role)
-            return null
+            return null;
 
         const role_output: RoleOutput = {
             active: role.active,
@@ -49,22 +49,19 @@ export class RoleRepositoryPostgres implements RoleRepository {
             name: role.name,
             id: role.id,
             updated_at: role.updated_at,
-            _count: {
-                users: role._count.users
-            }
-        }
 
-        return role_output
-    }
+        };
+
+        return role_output;
+    };
 
     getByName = async (role_name: string) => {
-        const role = await this.prisma.role.findUnique({
-            where: { name: role_name },
-            include: { _count: true }
-        })
+        const role = await prisma.role.findUnique({
+            where: { name: role_name }
+        });
 
         if (!role)
-            return null
+            return null;
 
         const role_output: RoleOutput = {
             active: role.active,
@@ -72,37 +69,71 @@ export class RoleRepositoryPostgres implements RoleRepository {
             description: role.description,
             name: role.name,
             id: role.id,
-            updated_at: role.updated_at,
-            _count: {
-                users: role._count.users
+            updated_at: role.updated_at
+        };
+
+        return role_output;
+    };
+
+    create = async ({ name, description, active, id }: RoleInput) => {
+        const role = await prisma.role.create({
+            data: {
+                id, name, description, active,
             }
-        }
+        });
 
-        return role_output
-    }
-
-    create = async (role_data: RoleInput) => {
-        const role = await this.prisma.role.create({
-            data: role_data
-        })
-
-        return role
-    }
+        return role;
+    };
 
     updateById = async (role_id: string, role_data: RoleUpdateInput) => {
-        const role = await this.prisma.role.update({
+        const role = await prisma.role.update({
             where: { id: role_id },
             data: role_data
-        })
+        });
 
-        return role
-    }
+        return role;
+    };
+
+    updateByName = async (role_name: string, role_data: RoleUpdateInput) => {
+        const role = await prisma.role.update({
+            where: { name: role_name },
+            data: role_data
+        });
+
+        return role;
+    };
 
     deleteById = async (role_id: string) => {
-        const role = await this.prisma.role.delete({
+        const role = await prisma.role.delete({
             where: { id: role_id }
-        })
+        });
 
-        return role
-    }
+        return role;
+    };
+
+    deleteByName = async (role_name: string) => {
+        const role = await prisma.role.delete({
+            where: { name: role_name }
+        });
+
+        return role;
+    };
+
+    getUsersByRoleId = async (role_id: string) => {
+        const users = await prisma.user.findMany({
+            where: { role_id }
+        });
+
+        return users as UserOutput[];
+    };
+
+    getUsersByRoleName = async (role_name: string) => {
+        const users = await prisma.user.findMany({
+            where: {
+                role: { name: role_name }
+            }
+        });
+
+        return users as UserOutput[];
+    };
 }

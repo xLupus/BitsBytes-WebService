@@ -33,6 +33,10 @@ export type RoleFilterColumns = 'name'
 
 export type RoleRepository = BaseRepository<RoleOutput, RoleInput, RoleUpdateInput> & {
     getByName: (name: string) => Promise<RoleOutput | null>
+    deleteByName: (name: string) => Promise<RoleOutput>
+    updateByName: (name: string, data: RoleUpdateInput) => Promise<RoleOutput>
+    getUsersByRoleId: (role_id: string) => Promise<UserOutput[]>
+    getUsersByRoleName: (role_name: string) => Promise<UserOutput[]>
 }
 
 export type RoleGetAllOptions = {

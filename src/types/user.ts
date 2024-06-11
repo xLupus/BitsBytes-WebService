@@ -10,7 +10,6 @@ export type User = {
     created_at: Date
     updated_at: Date
     role_id: string
-    role?: Role
 }
 
 export type UserInput = {

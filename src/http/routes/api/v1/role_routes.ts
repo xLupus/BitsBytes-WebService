@@ -8,6 +8,7 @@ role_routes
     .post("/roles", role_controller.create)
     .get("/roles", role_controller.getAll)
     .get("/roles/:role_id", role_controller.getById)
+    .get("/roles/:role_id/users", role_controller.getUsersByRoleId)
     .put("/roles/:role_id", role_controller.updateById)
     .delete("/roles/:role_id", role_controller.deleteById)
 

@@ -3,17 +3,6 @@ import z from "zod";
 const active_schema = z.boolean()
 const uuid_schema = z.string().uuid()
 
-const error_messages = {
-    invalid_type: {
-        string: "O valor do campo dever ser um texto"
-    },
-    required_field: "Chave ausente no JSON",
-    length: {
-        min: "Preencha esse campo",
-        max: ""
-    }
-}
-
 const user_name_schema = z
     .string({
         invalid_type_error: "",

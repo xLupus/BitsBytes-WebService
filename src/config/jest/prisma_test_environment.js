@@ -30,7 +30,7 @@ class CustomEnvironment extends NodeEnvironment {
         const client = new PrismaClient({ datasourceUrl: this.connectionString })
 
         await client.$connect()
-        await client.$executeRaw(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`)
+        await client.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`)
         await client.$disconnect()
     }
 }

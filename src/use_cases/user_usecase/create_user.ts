@@ -1,4 +1,4 @@
-import { UserValidationError } from "../../http/esceptions/user-exceptions";
+import { UserValidationError } from "../../http/exceptions/user-exceptions";
 import { create_user_schema } from "../../http/schemas/user_schemas";
 import bcrypt from "bcryptjs"
 import { UserInput, UserRepository } from "../../types/user";

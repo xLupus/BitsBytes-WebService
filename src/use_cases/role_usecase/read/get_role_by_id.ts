@@ -1,4 +1,4 @@
-import { RoleNotFoundError } from "../../../http/esceptions/role-exceptions";
+import { RoleNotFoundError } from "../../../http/exceptions/role-exceptions";
 import { RoleRepository } from "../../../types/role";
 
 export class GetRoleByIdUseCase {

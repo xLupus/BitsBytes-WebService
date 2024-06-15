@@ -3,7 +3,7 @@
  */
 import { randomUUID } from "crypto";
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
-import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/esceptions/role-exceptions";
+import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/exceptions/role-exceptions";
 import { UpdateRoleByIdUseCase } from "./update_role_by_id";
 import { RoleInput, RoleRepository } from "../../../types/role";
 import { CreateRoleUseCase } from "../create/create_role";

@@ -1,8 +1,8 @@
-import { randomUUID } from "crypto";
-import { RoleRepositoryPostgres } from ".";
-import { Role } from "@prisma/client";
-import { RoleRepository } from "../../../types/role";
-import { prismaMock } from "../../../config/jest/prisma_mock";
+import {randomUUID} from "crypto";
+import {RoleRepositoryPostgres} from ".";
+import {Role} from "@prisma/client";
+import {RoleRepository} from "../../../types/role";
+import {prismaMock} from "../../../config/jest/prisma_mock";
 
 describe("Role Repository", () => {
     let role_repository: RoleRepository;

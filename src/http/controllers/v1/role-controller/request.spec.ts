@@ -91,7 +91,7 @@ describe("Role Controller", () => {
 
             const role: RoleInput = {
                 id: role_id,
-                name: "Gestor",
+                name: "Avaliador",
                 description: "Responsavel por gerir o site"
             };
 
@@ -99,8 +99,8 @@ describe("Role Controller", () => {
 
             const response = await request(app).put(`${request_url}/${role_id}`)
                 .send({ name: "Updated" })
-                .expect(200);
 
+            expect(response.status).toBe(200);
             expect(response.body.status).toBe(200);
 
         });
@@ -139,16 +139,16 @@ describe("Role Controller", () => {
 
             const role: RoleInput = {
                 id: role_id,
-                name: "Usuario Comum",
+                name: "CEO",
                 description: "Usuario Comum"
             };
 
-            await request(app).post(request_url).send(role).expect(201);
+            await request(app).post(request_url).send(role);
 
             const response = await request(app).put(`${request_url}/${role_id}`)
                 .send({ name: role.name })
-                .expect(400);
 
+            expect(response.status).toBe(400);
             expect(response.body.status).toBe(400);
             expect(response.body.errors).toHaveProperty("name");
         });
@@ -161,7 +161,7 @@ describe("Role Controller", () => {
 
             const role: RoleInput = {
                 id: role_id,
-                name: "Usuario Comum",
+                name: "Usuario Normal",
                 description: "Usuario Comum"
             };
 

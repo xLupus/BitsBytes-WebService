@@ -4,7 +4,7 @@
 import { randomUUID } from "crypto";
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
 import { GetRoleByIdUseCase } from "./get_role_by_id";
-import { RoleNotFoundError } from "../../../http/esceptions/role-exceptions";
+import { RoleNotFoundError } from "../../../http/exceptions/role-exceptions";
 import { RoleRepository } from "../../../types/role";
 import { CreateRoleUseCase } from "../create/create_role";
 

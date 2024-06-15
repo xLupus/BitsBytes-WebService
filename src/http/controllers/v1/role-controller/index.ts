@@ -5,7 +5,7 @@ import { RoleRepositoryPostgres } from "../../../../repositories/postgres/role_r
 import { CreateRoleUseCase } from "../../../../use_cases/role_usecase/create/create_role";
 import { GetAllRolesUseCase } from "../../../../use_cases/role_usecase/read/get_all_roles";
 import { GetRoleByIdUseCase } from "../../../../use_cases/role_usecase/read/get_role_by_id";
-import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../esceptions/role-exceptions";
+import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../exceptions/role-exceptions";
 import { UpdateRoleByIdUseCase } from "../../../../use_cases/role_usecase/update/update_role_by_id";
 import { DeleteRoleByIdUseCase } from "../../../../use_cases/role_usecase/delete/delete_role_by_id";
 import { getUsersByRoleIdUseCase } from "../../../../use_cases/role_usecase/read/users/get_users_by_role_id";
@@ -186,7 +186,10 @@ export class RoleController {
             } else if (error instanceof RoleNameAlreadyBeingUsedError) {
                 logger.error(error.name);
                 response_body.status = 400;
-                response_body.message = "O nome de cargo já está sendo utilizado ";
+                response_body.message = "O nome de cargo já está sendo utilizado";
+                response_body.errors = {
+                    name: "O nome de cargo já está sendo utilizado"
+                }
             } else {
                 response_body.status = 500;
                 response_body.message = "Internal Server Error";

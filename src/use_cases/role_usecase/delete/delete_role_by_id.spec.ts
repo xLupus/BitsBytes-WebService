@@ -3,7 +3,7 @@
  */
 import { randomUUID } from "crypto";
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
-import { RoleNotFoundError } from "../../../http/esceptions/role-exceptions";
+import { RoleNotFoundError } from "../../../http/exceptions/role-exceptions";
 import { DeleteRoleByIdUseCase } from "./delete_role_by_id";
 import { CreateRoleUseCase } from "../create/create_role";
 

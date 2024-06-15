@@ -1,4 +1,4 @@
-import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/esceptions/role-exceptions";
+import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/exceptions/role-exceptions";
 import { update_role_schema } from "../../../http/schemas/role_schemas";
 import { RoleRepository, RoleUpdateInput } from "../../../types/role";
 

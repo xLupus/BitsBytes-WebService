@@ -86,37 +86,29 @@ export class RoleRepositoryPostgres implements RoleRepository {
     };
 
     updateById = async (role_id: string, role_data: RoleUpdateInput) => {
-        const role = await prisma.role.update({
+        await prisma.role.update({
             where: { id: role_id },
             data: role_data
         });
-
-        return role;
     };
 
     updateByName = async (role_name: string, role_data: RoleUpdateInput) => {
-        const role = await prisma.role.update({
+        await prisma.role.update({
             where: { name: role_name },
             data: role_data
         });
-
-        return role;
     };
 
     deleteById = async (role_id: string) => {
-        const role = await prisma.role.delete({
+        await prisma.role.delete({
             where: { id: role_id }
         });
-
-        return role;
     };
 
     deleteByName = async (role_name: string) => {
-        const role = await prisma.role.delete({
+        await prisma.role.delete({
             where: { name: role_name }
         });
-
-        return role;
     };
 
     getUsersByRoleId = async (role_id: string) => {

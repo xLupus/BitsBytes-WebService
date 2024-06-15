@@ -2,7 +2,7 @@
  * @jest-environment ./config/jest/prisma_test_environment
  */
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
-import { RoleNotFoundError } from "../../../http/esceptions/role-exceptions";
+import { RoleNotFoundError } from "../../../http/exceptions/role-exceptions";
 import { CreateRoleUseCase } from "../create/create_role";
 import { DeleteRoleByNameUseCase } from "./delete_role_by_name";
 

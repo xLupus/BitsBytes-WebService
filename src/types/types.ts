@@ -9,8 +9,8 @@ export type BaseRepository<T, C, U> = {
     getAll: (options?: any) => Promise<T[]>
     getById: (id: string) => Promise<T | null>
     create: (data: C) => Promise<T>
-    updateById: (id: string, data: U) => Promise<T>
-    deleteById: (id: string) => Promise<T>
+    updateById: (id: string, data: U) => Promise<void>
+    deleteById: (id: string) => Promise<void>
 }
 
 export type FilterParamQuery<T> = {

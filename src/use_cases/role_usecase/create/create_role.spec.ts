@@ -1,7 +1,7 @@
 /**
  * @jest-environment ./config/jest/prisma_test_environment
  */
-import { RoleNameAlreadyBeingUsedError, RoleValidationError } from "../../../http/esceptions/role-exceptions";
+import { RoleNameAlreadyBeingUsedError, RoleValidationError } from "../../../http/exceptions/role-exceptions";
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
 import { RoleInput } from "../../../types/role";
 import { CreateRoleUseCase } from "./create_role";

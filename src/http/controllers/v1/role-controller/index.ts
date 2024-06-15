@@ -186,7 +186,10 @@ export class RoleController {
             } else if (error instanceof RoleNameAlreadyBeingUsedError) {
                 logger.error(error.name);
                 response_body.status = 400;
-                response_body.message = "O nome de cargo já está sendo utilizado ";
+                response_body.message = "O nome de cargo já está sendo utilizado";
+                response_body.errors = {
+                    name: "O nome de cargo já está sendo utilizado"
+                }
             } else {
                 response_body.status = 500;
                 response_body.message = "Internal Server Error";

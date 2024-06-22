@@ -2,12 +2,12 @@
  * @jest-environment ./config/jest/prisma_test_environment
  */
 
-import {TagRepository} from "../../../types/tag";
+import {ITagRepository} from "../../../types/tag";
 import {GetAllTagsUseCase} from "./get_all_tags";
 import {TagRepositoryPostgres} from "../../../repositories/postgres/tag_repository";
 
 describe("Get All Roles UseCase", () => {
-    let tag_repository: TagRepository
+    let tag_repository: ITagRepository
     let get_all_tags: GetAllTagsUseCase
 
     beforeEach(() => {

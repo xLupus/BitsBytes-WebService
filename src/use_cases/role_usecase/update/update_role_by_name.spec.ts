@@ -4,12 +4,12 @@
 import { randomUUID } from "crypto";
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository";
 import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/exceptions/role-exceptions";
-import { RoleInput, RoleRepository } from "../../../types/role";
+import { RoleInput, IRoleRepository } from "../../../types/role";
 import { CreateRoleUseCase } from "../create/create_role";
 import { UpdateRoleByNameUseCase } from "./update_role_by_name";
 
 describe("Update a Role by ID UseCase", () => {
-    let role_repository: RoleRepository;
+    let role_repository: IRoleRepository;
     let update_role_by_name_usecase: UpdateRoleByNameUseCase;
 
     beforeEach(() => {

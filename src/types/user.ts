@@ -1,5 +1,4 @@
-import { Role } from "./role"
-import { BaseRepository } from "./types"
+import {BaseRepository} from "./types"
 
 export type User = {
     id: string
@@ -31,6 +30,8 @@ export type UserUpdateInput = {
 
 export type UserOutput = Omit<User, "password">
 
-export type UserRepository = BaseRepository<UserOutput, UserInput, UserUpdateInput> & {
-    getByName: (name: string) => Promise<UserOutput | null>
+export type IUserRepository = BaseRepository<UserOutput, UserInput, UserUpdateInput> & {
+    getByEmail: (name: string) => Promise<UserOutput | null>
+    updateByEmail: (email: string, data: UserUpdateInput) => Promise<void>
+    deleteByEmail: (email: string) => Promise<void>
 }

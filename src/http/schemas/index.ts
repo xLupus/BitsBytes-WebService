@@ -2,15 +2,15 @@ import z from "zod";
 
 export const schema_errors_messages = {
     invalid_type: {
-        string: "O valor do campo dever ser um texto",
+        string: "O valor do campo deve ser um texto",
         boolean: "O valor do campo deve ser TRUE ou False",
     },
-    
+
     format: {
         uuid: "Formato de UUID invalido",
         email: "Formato de E-mail invalido",
     },
-    
+
     length: {
         password: "A senha deve ter no minimo 8 caracteres",
         min_1: "Preencha esse campo",
@@ -58,8 +58,7 @@ export const email_schema = z
         required_error: schema_errors_messages.required_field
     })
     .min(1, schema_errors_messages.length.min_1)
-    .min(8, schema_errors_messages.length.password)
-
+    .email(schema_errors_messages.format.email)
 
 export const password_schema = z
     .string({

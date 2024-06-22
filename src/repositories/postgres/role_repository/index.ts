@@ -1,10 +1,10 @@
 import { Prisma } from "@prisma/client";
-import { RoleGetAllOptions, RoleOutput, RoleRepository } from "../../../types/role";
+import { RoleGetAllOptions, RoleOutput, IRoleRepository } from "../../../types/role";
 import { RoleInput, RoleUpdateInput } from "../../../types/role";
 import prisma from "../../../database/client";
 import { UserOutput } from "../../../types/user";
 
-export class RoleRepositoryPostgres implements RoleRepository {
+export class RoleRepositoryPostgres implements IRoleRepository {
     getAll = async (options?: RoleGetAllOptions) => {
         const prismaOptions: Prisma.RoleFindManyArgs = {};
 

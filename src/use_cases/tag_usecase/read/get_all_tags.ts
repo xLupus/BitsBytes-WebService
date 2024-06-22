@@ -1,9 +1,9 @@
-import {TagRepository} from "../../../types/tag";
+import {ITagRepository} from "../../../types/tag";
 
 export class GetAllTagsUseCase {
-    tag_repository: TagRepository;
+    tag_repository: ITagRepository;
 
-    constructor(tag_repository: TagRepository) {
+    constructor(tag_repository: ITagRepository) {
         this.tag_repository = tag_repository;
     }
 

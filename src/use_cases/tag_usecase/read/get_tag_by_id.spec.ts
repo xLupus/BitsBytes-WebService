@@ -3,13 +3,13 @@
  */
 import {randomUUID} from "crypto";
 import {CreateTagUseCase} from "../create/create_tag";
-import {TagRepository} from "../../../types/tag";
+import {ITagRepository} from "../../../types/tag";
 import {GetTagByIdUseCase} from "./get_tag_by_id";
 import {TagRepositoryPostgres} from "../../../repositories/postgres/tag_repository";
 import {TagNotFoundError} from "../../../http/exceptions/tag_exceptions";
 
 describe("Get Role By ID UseCase", () => {
-    let tag_repository: TagRepository;
+    let tag_repository: ITagRepository;
     let get_tag_by_id: GetTagByIdUseCase;
 
     beforeEach(() => {

@@ -4,12 +4,12 @@
 import { randomUUID } from "crypto";
 import { RoleNotFoundError } from "../../../../http/exceptions/role-exceptions";
 import { RoleRepositoryPostgres } from "../../../../repositories/postgres/role_repository";
-import { RoleRepository } from "../../../../types/role";
+import { IRoleRepository } from "../../../../types/role";
 import { CreateRoleUseCase } from "../../create/create_role";
 import { getUsersByRoleIdUseCase } from "./get_users_by_role_id";
 
 describe("Get Users by Role ID", () => {
-    let role_repository: RoleRepository;
+    let role_repository: IRoleRepository;
     let get_users_by_role_id_usecase: getUsersByRoleIdUseCase;
 
     beforeEach(() => {

@@ -31,7 +31,7 @@ export type RoleOutput = Role & {
 export type RoleOrderColumns = 'name'
 export type RoleFilterColumns = 'name'
 
-export type RoleRepository = BaseRepository<RoleOutput, RoleInput, RoleUpdateInput> & {
+export type IRoleRepository = BaseRepository<RoleOutput, RoleInput, RoleUpdateInput> & {
     getByName: (name: string) => Promise<RoleOutput | null>
     deleteByName: (name: string) => Promise<void>
     updateByName: (name: string, data: RoleUpdateInput) => Promise<void>

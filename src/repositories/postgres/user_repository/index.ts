@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import { UserInput, UserUpdateInput, User, UserRepository } from "../../../types/user";
+import {PrismaClient} from "@prisma/client";
+import {UserInput, UserUpdateInput, User, IUserRepository} from "../../../types/user";
 
-export class UserRepositoryPostgres {
+export class UserRepositoryPostgres implements IUserRepository {
     db = new PrismaClient()
 
     getAll = async () => {
@@ -25,7 +25,7 @@ export class UserRepositoryPostgres {
 
     getById = async (user_id: string) => {
         const user = await this.db.user.findUnique({
-            where: { id: user_id }
+            where: {id: user_id}
         })
 
         if (!user)
@@ -47,7 +47,7 @@ export class UserRepositoryPostgres {
 
     getByEmail = async (user_email: string) => {
         const user = await this.db.user.findUnique({
-            where: { email: user_email }
+            where: {email: user_email}
         })
 
         if (!user)
@@ -87,8 +87,8 @@ export class UserRepositoryPostgres {
     }
 
     updateById = async (user_id: string, user_data: UserUpdateInput) => {
-        const user = await this.db.user.update({
-            where: { id: user_id },
+        await this.db.user.update({
+            where: {id: user_id},
             data: {
                 name: user_data.name,
                 email: user_data.email,
@@ -98,14 +98,31 @@ export class UserRepositoryPostgres {
             }
         })
 
-        return user
+    }
+
+    updateByEmail = async (user_email: string, user_data: UserUpdateInput) => {
+        await this.db.user.update({
+            where: {email: user_email},
+            data: {
+                name: user_data.name,
+                email: user_data.email,
+                active: user_data.active,
+                role_id: user_data.role_id,
+                password: user_data.password,
+            }
+        })
+
     }
 
     deleteById = async (user_id: string) => {
-        const user = await this.db.user.delete({
-            where: { id: user_id }
+        await this.db.user.delete({
+            where: {id: user_id}
         })
+    }
 
-        return user
+    deleteByEmail = async (user_email: string) => {
+        await this.db.user.delete({
+            where: {email: user_email}
+        })
     }
 }

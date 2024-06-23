@@ -1,7 +1,7 @@
 import { RoleNotFoundError } from "../../../../http/exceptions/role-exceptions";
 import { IRoleRepository } from "../../../../types/role";
 
-export class getUsersByRoleIdUseCase {
+export class GetUsersByRoleIdUseCase {
     role_repository: IRoleRepository;
 
     constructor(role_repository: IRoleRepository) {

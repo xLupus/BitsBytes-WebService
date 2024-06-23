@@ -6,15 +6,15 @@ import { RoleNotFoundError } from "../../../../http/exceptions/role-exceptions";
 import { RoleRepositoryPostgres } from "../../../../repositories/postgres/role_repository";
 import { IRoleRepository } from "../../../../types/role";
 import { CreateRoleUseCase } from "../../create/create_role";
-import { getUsersByRoleIdUseCase } from "./get_users_by_role_id";
+import { GetUsersByRoleIdUseCase } from "./get_users_by_role_id";
 
 describe("Get Users by Role ID", () => {
     let role_repository: IRoleRepository;
-    let get_users_by_role_id_usecase: getUsersByRoleIdUseCase;
+    let get_users_by_role_id_usecase: GetUsersByRoleIdUseCase;
 
     beforeEach(() => {
         role_repository = new RoleRepositoryPostgres();
-        get_users_by_role_id_usecase = new getUsersByRoleIdUseCase(role_repository);
+        get_users_by_role_id_usecase = new GetUsersByRoleIdUseCase(role_repository);
     });
 
     it("should be able to get Users", async () => {

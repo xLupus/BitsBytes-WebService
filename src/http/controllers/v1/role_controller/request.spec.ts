@@ -1,10 +1,11 @@
 /**
  * @jest-environment ./config/jest/prisma_test_environment
  */
-import { randomUUID } from "crypto";
-import { RoleInput } from "../../../../types/role";
-import { app } from "../../../../config/server";
+import {randomUUID} from "crypto";
+import {RoleInput} from "../../../../types/role";
+import {app} from "../../../../config/server";
 import request from "supertest";
+import {faker} from "@faker-js/faker/locale/pt_BR";
 
 describe("Role Controller", () => {
     const api_version = "/api/v1";
@@ -98,7 +99,7 @@ describe("Role Controller", () => {
             await request(app).post(request_url).send(role);
 
             const response = await request(app).put(`${request_url}/${role_id}`)
-                .send({ name: "Updated" })
+                .send({name: "Updated"})
 
             expect(response.status).toBe(200);
             expect(response.body.status).toBe(200);
@@ -109,7 +110,7 @@ describe("Role Controller", () => {
             const role_id = randomUUID().toString();
 
             const response = await request(app).put(`${request_url}/${role_id}`)
-                .send({ name: "Updated" })
+                .send({name: "Updated"})
                 .expect(404);
 
             expect(response.body.status).toBe(404);
@@ -127,7 +128,7 @@ describe("Role Controller", () => {
             await request(app).post(request_url).send(role).expect(201);
 
             const response = await request(app).put(`${request_url}/${role_id}`)
-                .send({ description: "" })
+                .send({description: ""})
                 .expect(400);
 
             expect(response.body.status).toBe(400);
@@ -146,7 +147,7 @@ describe("Role Controller", () => {
             await request(app).post(request_url).send(role);
 
             const response = await request(app).put(`${request_url}/${role_id}`)
-                .send({ name: role.name })
+                .send({name: role.name})
 
             expect(response.status).toBe(400);
             expect(response.body.status).toBe(400);
@@ -186,7 +187,38 @@ describe("Role Controller", () => {
     });
 
     describe(`GET ${api_version}/roles/role_id/users`, () => {
-        it.todo("should return a role details");
-        it.todo("shouldn't return details from a invalid id");
+        it("should return users from a role", async () => {
+            const role = {
+                id: randomUUID().toString(),
+                name: faker.word.words(1),
+                description: faker.word.words(10)
+            }
+
+            await request(app).post(request_url).send(role)
+
+            for (let i = 0; i <= 1; i++)
+                await request(app).post(`${api_version}/users`).send({
+                    name: faker.person.fullName(),
+                    email: faker.internet.email(),
+                    password: faker.word.words(2),
+                    role_id: role.id
+                })
+
+            const response = await request(app).get(`${request_url}/${role.id}/users`)
+
+            expect(response.status).toBe(200);
+            expect(response.body.status).toBe(200);
+            expect(response.body.data).toHaveProperty("users")
+            expect(response.body.data.users).toHaveLength(2)
+        });
+
+        it("shouldn't return details from a invalid id", async () => {
+            const role_id = randomUUID().toString();
+            const response = await request(app).get(`${request_url}/${role_id}/users`)
+
+            expect(response.status).toBe(404);
+            expect(response.body.status).toBe(404);
+            expect(response.body.errors).toHaveProperty("role");
+        });
     });
 });

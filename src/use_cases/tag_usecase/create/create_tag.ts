@@ -1,11 +1,11 @@
-import {TagInput, TagRepository} from "../../../types/tag";
+import {TagInput, ITagRepository} from "../../../types/tag";
 import {create_tag_schema} from "../../../http/schemas/tag_schemas";
 import {TagNameAlreadyBeingUsedError, TagValidationError} from "../../../http/exceptions/tag_exceptions";
 
 export class CreateTagUseCase {
-    tag_repository: TagRepository;
+    tag_repository: ITagRepository;
 
-    constructor(tag_repository: TagRepository) {
+    constructor(tag_repository: ITagRepository) {
         this.tag_repository = tag_repository;
     }
 

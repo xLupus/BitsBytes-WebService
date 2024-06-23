@@ -1,11 +1,11 @@
 import { RoleNameAlreadyBeingUsedError, RoleNotFoundError, RoleValidationError } from "../../../http/exceptions/role-exceptions";
 import { update_role_schema } from "../../../http/schemas/role_schemas";
-import { RoleRepository, RoleUpdateInput } from "../../../types/role";
+import { IRoleRepository, RoleUpdateInput } from "../../../types/role";
 
 export class UpdateRoleByIdUseCase {
-    role_repository: RoleRepository;
+    role_repository: IRoleRepository;
 
-    constructor(role_repository: RoleRepository) {
+    constructor(role_repository: IRoleRepository) {
         this.role_repository = role_repository;
     }
 

@@ -1,11 +1,11 @@
 import { TagNameAlreadyBeingUsedError, TagNotFoundError, TagValidationError } from "../../../http/exceptions/tag_exceptions";
 import { update_tag_schema } from "../../../http/schemas/tag_schemas";
-import { TagRepository, TagUpdateInput } from "../../../types/tag";
+import { ITagRepository, TagUpdateInput } from "../../../types/tag";
 
 export class UpdateTagByNameUseCase {
-    tag_repository: TagRepository;
+    tag_repository: ITagRepository;
 
-    constructor(tag_repository: TagRepository) {
+    constructor(tag_repository: ITagRepository) {
         this.tag_repository = tag_repository;
     }
 

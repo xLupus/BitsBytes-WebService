@@ -1,9 +1,9 @@
-import { RoleGetAllOptions, RoleRepository } from "../../../types/role";
+import { RoleGetAllOptions, IRoleRepository } from "../../../types/role";
 
 export class GetAllRolesUseCase {
-    roleRepository: RoleRepository;
+    roleRepository: IRoleRepository;
 
-    constructor(roleRepository: RoleRepository) {
+    constructor(roleRepository: IRoleRepository) {
         this.roleRepository = roleRepository;
     }
 

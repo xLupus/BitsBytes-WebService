@@ -2,11 +2,11 @@
  * @jest-environment ./config/jest/prisma_test_environment
  */
 import { RoleRepositoryPostgres } from "../../../repositories/postgres/role_repository"
-import { RoleRepository } from "../../../types/role"
+import { IRoleRepository } from "../../../types/role"
 import { GetAllRolesUseCase } from "./get_all_roles"
 
 describe("Get All Roles UseCase", () => {
-    let role_repository: RoleRepository
+    let role_repository: IRoleRepository
     let get_all_roles_usecase: GetAllRolesUseCase
 
     beforeEach(() => {

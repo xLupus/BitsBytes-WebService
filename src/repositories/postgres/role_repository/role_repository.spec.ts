@@ -1,11 +1,11 @@
 import {randomUUID} from "crypto";
 import {RoleRepositoryPostgres} from ".";
 import {Role} from "@prisma/client";
-import {RoleRepository} from "../../../types/role";
+import {IRoleRepository} from "../../../types/role";
 import {prismaMock} from "../../../config/jest/prisma_mock";
 
 describe("Role Repository", () => {
-    let role_repository: RoleRepository;
+    let role_repository: IRoleRepository;
 
     beforeEach(() => {
         role_repository = new RoleRepositoryPostgres();

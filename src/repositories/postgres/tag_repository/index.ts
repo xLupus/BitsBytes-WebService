@@ -1,8 +1,8 @@
 import {Prisma} from "@prisma/client";
 import prisma from "../../../database/client";
-import {TagInput, Tag, TagRepository, TagUpdateInput} from "../../../types/tag";
+import {TagInput, Tag, ITagRepository, TagUpdateInput} from "../../../types/tag";
 
-export class TagRepositoryPostgres implements TagRepository {
+export class TagRepositoryPostgres implements ITagRepository {
     getAll = async () => {
         const tags = await prisma.tag.findMany();
 

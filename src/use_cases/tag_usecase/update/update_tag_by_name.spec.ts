@@ -4,12 +4,12 @@
 import { randomUUID } from "crypto";
 import { TagRepositoryPostgres } from "../../../repositories/postgres/tag_repository";
 import { TagNameAlreadyBeingUsedError, TagNotFoundError, TagValidationError } from "../../../http/exceptions/tag_exceptions";
-import { TagInput, TagRepository } from "../../../types/tag";
+import { TagInput, ITagRepository } from "../../../types/tag";
 import { CreateTagUseCase } from "../create/create_tag";
 import { UpdateTagByNameUseCase } from "./update_tag_by_name";
 
 describe("Update a Tag by ID UseCase", () => {
-    let tag_repository: TagRepository;
+    let tag_repository: ITagRepository;
     let update_tag_by_name: UpdateTagByNameUseCase;
 
     beforeEach(() => {

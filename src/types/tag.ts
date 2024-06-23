@@ -22,7 +22,7 @@ export type TagUpdateInput = {
     active?: boolean
 }
 
-export type TagRepository = BaseRepository<Tag, TagInput, TagUpdateInput> & {
+export type ITagRepository = BaseRepository<Tag, TagInput, TagUpdateInput> & {
     getByName: (name: string) => Promise<Tag | null>
     deleteByName: (name: string) => Promise<void>
     updateByName: (name: string, data: TagUpdateInput) => Promise<void>

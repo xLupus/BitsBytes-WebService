@@ -10,6 +10,13 @@ export class UserNotFoundError extends Error {
     }
 }
 
+export class UserEmailAlreadyBeingUsedError extends Error {
+    constructor() {
+        super()
+        this.name = "UserEmailAlreadyBeingUsedError"
+    }
+}
+
 export class UserValidationError extends Error {
     constructor(cause: object, message = "Valores de Input de Usuario Invalidos") {
         super()

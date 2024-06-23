@@ -1,10 +1,10 @@
 import { RoleNotFoundError } from "../../../../http/exceptions/role-exceptions";
-import { RoleRepository } from "../../../../types/role";
+import { IRoleRepository } from "../../../../types/role";
 
 export class getUsersByRoleNameUseCase {
-    role_repository: RoleRepository;
+    role_repository: IRoleRepository;
 
-    constructor(role_repository: RoleRepository) {
+    constructor(role_repository: IRoleRepository) {
         this.role_repository = role_repository;
     }
 

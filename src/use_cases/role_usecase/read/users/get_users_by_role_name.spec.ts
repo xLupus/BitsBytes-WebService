@@ -3,12 +3,12 @@
  */
 import { RoleNotFoundError } from "../../../../http/exceptions/role-exceptions";
 import { RoleRepositoryPostgres } from "../../../../repositories/postgres/role_repository";
-import { RoleRepository } from "../../../../types/role";
+import { IRoleRepository } from "../../../../types/role";
 import { CreateRoleUseCase } from "../../create/create_role";
 import { getUsersByRoleNameUseCase } from "./get_users_by_role_name";
 
 describe("Get Users by Role NAME", () => {
-    let role_repository: RoleRepository;
+    let role_repository: IRoleRepository;
     let get_users_by_role_name_usecase: getUsersByRoleNameUseCase;
 
     beforeEach(() => {
